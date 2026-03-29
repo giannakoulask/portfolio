@@ -13,8 +13,9 @@ gem "webrick"
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
   gem "jekyll-sitemap", "~> 1.4"
-  gem "jekyll-seo-tag", "~> 2.8"   # optional, recommended if in _config.yml
-  gem "jekyll-paginate", "~> 1.1"  # optional, remove if not used
+  gem "jekyll-seo-tag", "~> 2.8"   
+  gem "jekyll-paginate", "~> 1.1"  
+  gem "jekyll-spaceship", "~> 3.2"   
 end
 
 # Windows + JRuby compatibility
