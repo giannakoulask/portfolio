@@ -1,4 +1,4 @@
-{% if include.translate_langs %}
+<!-- {% if include.translate_langs %}
   {% assign translate_langs = include.translate_langs %}
 {% endif %}
 
@@ -105,4 +105,27 @@ function googleTranslateElementInit() {
 }
 </script>
 
-<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script> -->
+
+<div class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    {% assign current_url = page.url %}
+    {% if page.lang == "en" %}
+      <li>
+        <a href="/de{{ current_url }}" class="lang-select">Deutsch</a>
+      </li>
+    {% else %}
+      {% assign en_url = current_url | remove_first: '/de' %}
+      <li>
+        <a href="{{ en_url }}" class="lang-select">English</a>
+      </li>
+    {% endif %}
+  </ul>
+</div>
+
+<style>
+.ct-language { display: inline-block; }
+.ct-language ul { list-style: none; margin: 0; padding: 0; }
+.ct-language li { display: inline; margin-right: 0.5em; }
+.lang-select { text-decoration: none; font-weight: bold; }
+</style>
