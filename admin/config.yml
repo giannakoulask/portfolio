@@ -80,6 +80,21 @@ collections:
                   - { label: "Location", name: "location", widget: "string", required: false }
                   - { label: "Description", name: "description", widget: "text", required: false }
 
+      # 🖼️ Portfolio
+      - name: "portfolio_en"
+        label: "Portfolio (EN)"
+        file: "portfolio.en.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Text", name: "body", widget: "markdown" }
+
+      - name: "portfolio_de"
+        label: "Portfolio (DE)"
+        file: "portfolio.de.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Text", name: "body", widget: "markdown" }
+
       # 📞 Contact
       - name: "contact_en"
         label: "Contact (EN)"
@@ -112,13 +127,50 @@ collections:
   # =====================
   # 🎨 PROJECTS (Portfolio)
   # =====================
-  - name: "projects"
-    label: "Projects"
-    folder: "_projects"
+  - name: "projects_en"
+    label: "Projects (EN)"
+    folder: "_projects_en"
     create: true
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Cover Image", name: "image", widget: "image" }
       - { label: "Description", name: "description", widget: "text", required: false }
       - { label: "Body", name: "body", widget: "markdown", required: false }
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        fields:
+          - { label: "Image", name: "image", widget: "image" }
+          - { label: "Image Description", name: "caption", widget: "string", required: false }
+          - label: "Display"
+            name: "display"
+            widget: "select"
+            options:
+              - { label: "Full Width", value: "full" }
+              - { label: "Thumbnail", value: "thumb" }
+            default: "full"
+
+  - name: "projects_de"
+    label: "Projects (DE)"
+    folder: "_projects_de"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Cover Image", name: "image", widget: "image" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        fields:
+          - { label: "Image", name: "image", widget: "image" }
+          - { label: "Image Description", name: "caption", widget: "string", required: false }
+          - label: "Display"
+            name: "display"
+            widget: "select"
+            options:
+              - { label: "Full Width", value: "full" }
+              - { label: "Thumbnail", value: "thumb" }
+            default: "full"
