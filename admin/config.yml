@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: giannakoulask/portfolio
   branch: main
+  auth_type: implicit
+  app_id: Ov23liOfU4ISJWfWC6hj
   login: true
   roles: ["admin", "editor"]
 
