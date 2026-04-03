@@ -9,10 +9,89 @@
   </label>
 </div>
 
+<script>
+(function() {
+  const sw = document.getElementById('theme-switch');
+  const html = document.documentElement;
+  const storageKey = 'theme';
+
+  // Load session preference
+  const stored = JSON.parse(sessionStorage.getItem(storageKey) || '{}');
+  let nightShift = stored && typeof stored.nightShift === 'boolean'
+    ? stored.nightShift
+    : true; // default dark
+
+  // Apply initial theme & sync checkbox
+  html.dataset.theme = nightShift ? 'dark' : 'light';
+  sw.checked = nightShift;
+
+  // Animation helper
+  const transition = () => {
+    html.classList.add('transition');
+    setTimeout(() => html.classList.remove('transition'), 1000);
+  };
+
+  // Toggle event
+  sw.addEventListener('change', (e) => {
+    const isDark = e.target.checked;
+    transition();
+    html.dataset.theme = isDark ? 'dark' : 'light';
+    sessionStorage.setItem(storageKey, JSON.stringify({ nightShift: isDark }));
+  });
+})();
+</script>
+
+<!-- <div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div> -->
+
+<!-- 
 {%- assign name = 'night_mode' -%}
 {%- include functions.html func='get_value' default='auto' -%}
-{%- assign night_mode = return -%}
+{%- assign night_mode = return -%} -->
+<!-- 
+<script>
+(function() {
+  const sw = document.getElementById('theme-switch');
+  const html = document.documentElement;
+  const storageKey = 'theme'; // session memory
+  let themeData = { nightShift: true }; // default: dark
 
+  // Load stored preference
+  try {
+    const stored = JSON.parse(sessionStorage.getItem(storageKey));
+    if (stored && typeof stored.nightShift === 'boolean') {
+      themeData = stored;
+    }
+  } catch(e) { /* ignore */ }
+
+  // Apply initial theme immediately
+  html.dataset.theme = themeData.nightShift ? 'dark' : 'light';
+  sw.checked = themeData.nightShift; // sync toggle
+
+  // Save theme to sessionStorage
+  function saveTheme(nightShift) {
+    themeData.nightShift = nightShift;
+    sessionStorage.setItem(storageKey, JSON.stringify(themeData));
+  }
+
+  // Handle toggle click
+  sw.addEventListener('change', function(e) {
+    const isDark = e.target.checked;
+    html.dataset.theme = isDark ? 'dark' : 'light';
+    saveTheme(isDark);
+    document.dispatchEvent(new Event('theme-changed')); // for animations or other scripts
+  });
+})();
+</script> -->
+<!-- 
 <script>
   (function() {
     var sw = document.getElementById('theme-switch');
@@ -106,4 +185,4 @@
       handleThemeToggle(nightShift);
     }
   })();
-</script>
+</script> -->
